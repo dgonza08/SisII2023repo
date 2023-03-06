@@ -11,6 +11,7 @@ package com.mycompany.sisii2023dos;
  * @author davic
  */
 public class main {
-System.out.println("Hola mundo");
+    int a=3;
+    System.out.println("Hola mundo "+a);
 
 }
