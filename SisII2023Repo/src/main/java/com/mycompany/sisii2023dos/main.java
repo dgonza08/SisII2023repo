@@ -12,6 +12,6 @@ package com.mycompany.sisii2023dos;
  */
 public class main {
     int a=3;
-    System.out.println("Hola mundo "+a);
+    System.out.println("Hola mundo aqui estamos : \n"+a);
 
 }
