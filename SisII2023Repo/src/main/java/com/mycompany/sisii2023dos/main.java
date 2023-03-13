@@ -42,5 +42,7 @@ public class main {
         } else {
             System.out.println("El trabajador con ese DNI existe");
         }
+
+        sf.close();
     }
 }
