@@ -46,9 +46,5 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/sistemasinformacion?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">root</property>
-    <mapping resource="com/mycompany/sisii2023dos/Nomina.hbm.xml"/>
-    <mapping resource="com/mycompany/sisii2023dos/Categorias.hbm.xml"/>
-    <mapping resource="com/mycompany/sisii2023dos/Empresas.hbm.xml"/>
-    <mapping resource="com/mycompany/sisii2023dos/Trabajador.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

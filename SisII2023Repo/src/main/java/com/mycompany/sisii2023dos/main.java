@@ -7,6 +7,9 @@
 package com.mycompany.sisii2023dos;
 
 import java.util.Scanner;
+
+import org.hibernate.cfg.Configuration;
+
 import org.hibernate.*;
 import java.util.List;
 
@@ -15,21 +18,29 @@ import java.util.List;
  * @author davic
  */
 public class main {
-    private static SessionFactory sf;
-    public static void main(String[] args){
+
+    public static void main(String[] args) {
+        // Inicializar session factory
+        SessionFactory sf = HibernateUtil.getSessionFactory();
         Scanner sc = new Scanner(System.in);
         System.out.println("Introduce un DNI de un trabajador: ");
         String dni = sc.nextLine();
+        List lista = null;
 
-        Session sesion = sf.openSession();
-        String consultaDni = "SELECT * FROM trabajador n WHERE n.trabajador.NIFNIE=:param1";
-        Query query = sesion.createQuery(consultaDni); 
-        query.setParameter("param1", dni);
-        List lista = query.list();
-        
-        if(lista.isEmpty()){
+        try {
+            Session session = sf.openSession();
+
+            String consultaDni = "SELECT n FROM Nomina n WHERE n.trabajador.NIFNIE = :param1";
+            Query query = session.createQuery(consultaDni);
+            query.setParameter("param1", dni);
+            lista = query.list();
+        } catch (HibernateException e) {
+            System.out.println("Error de hibernate: " + e.getMessage());
+        }
+
+        if (lista.isEmpty()) {
             System.out.println("No existe el trabajador con ese DNI");
-        }else{
+        } else {
             System.out.println("El trabajador con ese DNI existe");
         }
     }

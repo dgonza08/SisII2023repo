@@ -1,5 +1,4 @@
-package modelo;
-
+package com.mycompany.sisii2023dos;
 /**
  * Created by yusufcakmak on 8/3/15.
  */
