@@ -36,7 +36,7 @@ public class main {
             System.out.println("Error de hibernate: " + e.getMessage());
         }
 
-        // Si la lista esta vacia pues eso eeeee
+        // Si la lista esta vacia pues eso eeeee aaaaa
         if (lista.isEmpty()) {
             System.out.println("No existe el trabajador con ese DNI");
         } else {
