@@ -8,8 +8,6 @@ package com.mycompany.sisii2023dos;
 
 import java.util.Scanner;
 
-import org.hibernate.cfg.Configuration;
-
 import org.hibernate.*;
 import java.util.List;
 
@@ -18,19 +16,19 @@ import java.util.List;
  * @author davic
  */
 public class main {
-
+    private static SessionFactory sf;
     public static void main(String[] args) {
         // Inicializar session factory
-        SessionFactory sf = HibernateUtil.getSessionFactory();
+        sf = HibernateUtil.getSessionFactory();
         Scanner sc = new Scanner(System.in);
         System.out.println("Introduce un DNI de un trabajador: ");
         String dni = sc.nextLine();
-        List lista = null;
+        List lista = null;      
 
         try {
             Session session = sf.openSession();
 
-            String consultaDni = "SELECT n FROM Nomina n WHERE n.trabajador.NIFNIE = :param1";
+            String consultaDni = "SELECT n FROM Nomina n WHERE n.Trabajador.NIFNIE = :param1";
             Query query = session.createQuery(consultaDni);
             query.setParameter("param1", dni);
             lista = query.list();
