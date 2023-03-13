@@ -1,70 +1,36 @@
-package com.mycompany.sisii2023dos;
-/**
- * Created by yusufcakmak on 8/3/15.
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
-import java.util.Properties;
-import org.hibernate.Session;
 
+package com.mycompany.sisii2023dos;
+
+
+import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
 
+/**
+ * Hibernate Utility class with a convenient method to get Session Factory object.
+ *
+ * @author davic
+ */
 public class HibernateUtil {
- 
-    private static StandardServiceRegistry registry;
+    private static final SessionFactory sessionFactory;
 
-    //XML based configuration
-    private static SessionFactory sessionFactory;
-
-
-    private static SessionFactory buildSessionFactory() {
+    static {
         try {
-            // Create the SessionFactory from hibernate.cfg.xml
-            Configuration configuration = new Configuration();
-            configuration.configure("hibernate.cfg.xml");
-            System.out.println("Hibernate Configuration loaded");
-
-            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-            System.out.println("Hibernate serviceRegistry created");
-
-            registry = (StandardServiceRegistry) serviceRegistry;
-            
-            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-           
-            return sessionFactory;
-        }
-        catch (Throwable ex) {
-            // Make sure you log the exception, as it might be swallowed
+            // Create the SessionFactory from standard (hibernate.cfg.xml) 
+            // config file.
+            sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
+        } catch (Throwable ex) {
+            // Log the exception. 
             System.err.println("Initial SessionFactory creation failed." + ex);
             throw new ExceptionInInitializerError(ex);
         }
     }
 
-
-
-
-
     public static SessionFactory getSessionFactory() {
-        if(sessionFactory == null) sessionFactory = buildSessionFactory();
         return sessionFactory;
     }
-
-
-    public static void cerrarSessionFactory(){
-        
-        if (!sessionFactory.isClosed())     {
-            sessionFactory.close();
-            
-        }
-    }
-    
-    
-        public static void shutdown() {
-        if (registry != null) {
-            StandardServiceRegistryBuilder.destroy(registry);
-        }    
-        }
-    
 }

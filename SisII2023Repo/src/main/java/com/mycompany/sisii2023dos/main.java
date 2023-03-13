@@ -28,7 +28,7 @@ public class main {
         try {
             Session session = sf.openSession();
 
-            String consultaDni = "SELECT n FROM Nomina n WHERE n.Trabajador.NIFNIE = :param1";
+            String consultaDni = "SELECT n FROM Nomina n WHERE n.trabajador.nifnie = :param1";
             Query query = session.createQuery(consultaDni);
             query.setParameter("param1", dni);
             lista = query.list();
